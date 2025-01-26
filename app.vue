@@ -1,0 +1,19 @@
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+    <UNotifications />
+  </NuxtLayout>
+</template>
+
+<script setup lang="ts">
+const toast = useToast();
+const { t } = useI18n();
+onErrorCaptured((error) => {
+  console.error(error);
+  toast.add({
+    title: t('error_occurred'),
+    description: error.message,
+    color: 'red',
+  });
+});
+</script>
