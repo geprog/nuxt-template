@@ -13,7 +13,6 @@ jobs:
           node-version: 22
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
           run_install: true
       - run: pnpm lint
 
@@ -27,12 +26,11 @@ jobs:
           node-version: 22
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
           run_install: true
       - run: pnpm typecheck
 
   spelling:
-    name: Typecheck
+    name: Spelling
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,6 +39,5 @@ jobs:
           node-version: 22
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
           run_install: true
       - run: pnpm spelling

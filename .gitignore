@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+*.tsbuildinfo
 
 # Node dependencies
 node_modules
@@ -14,6 +15,7 @@ logs
 *.log
 
 # Misc
+.pnpm-store
 .DS_Store
 .fleet
 .idea

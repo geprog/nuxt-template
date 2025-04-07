@@ -44,6 +44,10 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "tailwindCSS.classAttributes": ["class", "ui"],
+  "tailwindCSS.experimental.classRegex": [
+    ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
   "i18n-ally.localesPaths": [
     "i18n",
     "i18n/locales"
