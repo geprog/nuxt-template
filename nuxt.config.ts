@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   telemetry: false,
   ssr: false,
   modules: ['@nuxt/ui', '@nuxtjs/i18n'],
+  css: ['~/assets/css/main.css'],
   app: {
     head: {
       title: 'Nuxt Template',
