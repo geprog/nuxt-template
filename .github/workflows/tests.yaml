@@ -30,7 +30,7 @@ jobs:
       - run: pnpm typecheck
 
   spelling:
-    name: Typecheck
+    name: Spelling
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
