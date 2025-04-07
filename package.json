@@ -12,8 +12,7 @@
     "dev": "nuxt dev",
     "lint": "eslint",
     "spelling": "cspell lint --no-progress '**'",
-    "typecheck": "vue-tsc --build --force",
-    "generate": "nuxt generate",
+    "typecheck": "nuxt typecheck",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
@@ -28,6 +27,6 @@
     "cspell": "8.18.1",
     "eslint": "9.24.0",
     "eslint-plugin-format": "1.0.1",
-    "vue-tsc": "2.2.8"
+    "vue-tsc": "2.2.2"
   }
 }

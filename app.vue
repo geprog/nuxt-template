@@ -13,7 +13,7 @@ onErrorCaptured((error) => {
   toast.add({
     title: t('error_occurred'),
     description: error.message,
-    color: 'red',
+    color: 'error',
   });
 });
 </script>
