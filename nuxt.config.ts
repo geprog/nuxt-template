@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import process from 'node:process';
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-27',
   devtools: { enabled: true },
@@ -12,6 +14,11 @@ export default defineNuxtConfig({
       titleTemplate: '%s',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+    },
+  },
+  vite: {
+    server: {
+      allowedHosts: process.env.GITPOD_WORKSPACE_CLUSTER_HOST ? [`3000-${process.env.HOSTNAME}.${process.env.GITPOD_WORKSPACE_CLUSTER_HOST}`] : undefined,
     },
   },
   typescript: {
