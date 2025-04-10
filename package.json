@@ -28,6 +28,6 @@
     "cspell": "8.18.1",
     "eslint": "9.24.0",
     "eslint-plugin-format": "1.0.1",
-    "vue-tsc": "2.2.2"
+    "vue-tsc": "2.2.8"
   }
 }
