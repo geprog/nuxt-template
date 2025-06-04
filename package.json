@@ -23,7 +23,7 @@
     "tailwindcss": "4.1.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "4.12.0",
+    "@antfu/eslint-config": "4.13.3",
     "@cspell/dict-de-de": "4.1.0",
     "cspell": "9.0.1",
     "eslint": "9.26.0",
