@@ -2,7 +2,7 @@
   "name": "nuxt-template",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.1",
   "engines": {
     "pnpm": ">=9.0.0",
     "node": ">=22.0.0"
