@@ -1,4 +1,3 @@
-
 import { expect, test } from '@nuxt/test-utils/playwright';
 
 test.describe('Page Navigation', () => {
