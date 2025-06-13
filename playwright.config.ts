@@ -8,7 +8,7 @@ export default defineConfig<ConfigOptions>({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'line',
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
   testMatch: '**/*.test.ts',
   use: {
     video: 'off',
