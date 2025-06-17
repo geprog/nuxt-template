@@ -11,8 +11,7 @@ export default defineConfig<ConfigOptions>({
   reporter: [['html', { outputFolder: 'playwright-report' }]],
   testMatch: '**/*.test.ts',
   use: {
-    video: 'off',
-    trace: 'off',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
   },
-
 });
