@@ -10,4 +10,11 @@ tasks:
       pnpm install
       nvm alias default 22
       echo "nvm use default &>/dev/null" >> ~/.bashrc.d/51-nvm-fix
+      gp sync-done install
     command: pnpm dev
+
+  - name: Playwright install
+    before: |
+      gp sync-await install
+      pnpm playwright:install
+      exit 0
