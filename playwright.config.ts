@@ -14,4 +14,9 @@ export default defineConfig<ConfigOptions>({
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
   },
+  expect: {
+    toHaveScreenshot: {
+      animations: 'disabled',
+    },
+  },
 });
