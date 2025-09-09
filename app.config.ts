@@ -4,7 +4,7 @@ export default defineAppConfig({
   },
   ui: {
     button: {
-      default: {
+      defaultVariants: {
         size: 'md',
       },
     },
