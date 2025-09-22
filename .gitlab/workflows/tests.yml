@@ -1,0 +1,29 @@
+lint:
+  extends: .node-template
+  script:
+    - pnpm install
+    - pnpm lint
+
+typecheck:
+  extends: .node-template
+  script:
+    - pnpm install
+    - pnpm typecheck
+
+spelling:
+  extends: .node-template
+  script:
+    - pnpm install
+    - pnpm spelling
+
+e2e:
+  extends: .node-template
+  script:
+    - pnpm install --frozen-lockfile
+    - pnpm playwright:install
+    - pnpm test:e2e
+  artifacts:
+    when: always
+    paths:
+      - playwright-report/
+    expire_in: 30 days
