@@ -9,5 +9,6 @@ stages:
     - corepack enable
 
 include:
-  - local: .gitlab/workflows/deploy.yml
   - local: .gitlab/workflows/tests.yml
+  - local: .gitlab/workflows/build.yml
+  - local: .gitlab/workflows/deploy.yml
