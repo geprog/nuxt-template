@@ -1,9 +1,8 @@
 stages:
-  - build
   - deploy
 
 build:
-  stage: build
+  stage: deploy
   image: $NODE_IMAGE
   script:
     - pnpm install
