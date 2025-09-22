@@ -1,3 +1,12 @@
+build:
+  extends: .node-template
+  script:
+    - pnpm install
+    - pnpm build --preset gitlab_pages
+  artifacts:
+    paths:
+      - ./.output/public
+
 deploy:
   extends: .node-template
   needs:
@@ -7,5 +16,5 @@ deploy:
     - mv ./.output/public public
   only:
     - main
-  environment:
-    name: production
+  pages:
+    publish: public
