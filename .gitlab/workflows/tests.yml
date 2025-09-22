@@ -1,0 +1,36 @@
+stages:
+  - tests
+
+lint:
+  stage: tests
+  image: $NODE_IMAGE
+  script:
+    - pnpm install
+    - pnpm lint
+
+typecheck:
+  stage: tests
+  image: $NODE_IMAGE
+  script:
+    - pnpm install
+    - pnpm typecheck
+
+spelling:
+  stage: tests
+  image: $NODE_IMAGE
+  script:
+    - pnpm install
+    - pnpm spelling
+
+e2e:
+  stage: tests
+  image: $NODE_IMAGE
+  script:
+    - pnpm install --frozen-lockfile
+    - pnpm playwright:install
+    - pnpm test:e2e
+  artifacts:
+    when: always
+    paths:
+      - playwright-report/
+    expire_in: 30 days

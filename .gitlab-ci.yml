@@ -1,0 +1,6 @@
+variables:
+  NODE_IMAGE: node:22
+
+include:
+  - local: .gitlab/workflows/deploy.yml
+  - local: .gitlab/workflows/tests.yml

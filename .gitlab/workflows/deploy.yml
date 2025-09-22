@@ -1,0 +1,26 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: $NODE_IMAGE
+  script:
+    - pnpm install
+    - pnpm build --preset github_pages
+  artifacts:
+    paths:
+      - ./.output/public
+
+deploy:
+  stage: deploy
+  image: $NODE_IMAGE
+  dependencies:
+    - build
+  script:
+    # Adjust the deployment strategy here; e.g., for GitLab Pages:
+    - mv ./.output/public public
+  only:
+    - main
+  environment:
+    name: production
