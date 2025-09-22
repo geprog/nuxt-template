@@ -14,7 +14,7 @@ deploy:
   script:
     # Adjust the deployment strategy here; e.g., for GitLab Pages:
     - mv ./.output/public public
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   pages:
     publish: public
