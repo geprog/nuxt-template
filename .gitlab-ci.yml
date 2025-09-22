@@ -1,3 +1,7 @@
+stages:
+  - deploy
+  - tests
+
 variables:
   NODE_IMAGE: node:22
 

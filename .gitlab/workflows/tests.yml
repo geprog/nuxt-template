@@ -1,6 +1,3 @@
-stages:
-  - tests
-
 lint:
   stage: tests
   image: $NODE_IMAGE
