@@ -1,13 +1,3 @@
-build:
-  stage: deploy
-  extends: .node-template
-  script:
-    - pnpm install
-    - pnpm build --preset github_pages
-  artifacts:
-    paths:
-      - ./.output/public
-
 deploy:
   stage: deploy
   extends: .node-template

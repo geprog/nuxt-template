@@ -1,0 +1,9 @@
+build:
+  stage: build
+  extends: .node-template
+  script:
+    - pnpm install
+    - pnpm build --preset gitlab_pages
+  artifacts:
+    paths:
+      - ./.output/public

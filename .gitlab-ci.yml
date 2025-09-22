@@ -1,5 +1,6 @@
 stages:
   - tests
+  - build
   - deploy
 
 .node-template:
