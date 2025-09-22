@@ -1,9 +1,11 @@
 stages:
-  - deploy
   - tests
+  - deploy
 
-variables:
-  NODE_IMAGE: node:22
+.node-template:
+  image: node:22
+  before_script:
+    - corepack enable
 
 include:
   - local: .gitlab/workflows/deploy.yml

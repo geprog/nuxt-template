@@ -1,27 +1,27 @@
 lint:
   stage: tests
-  image: $NODE_IMAGE
+  extends: .node-template
   script:
     - pnpm install
     - pnpm lint
 
 typecheck:
   stage: tests
-  image: $NODE_IMAGE
+  extends: .node-template
   script:
     - pnpm install
     - pnpm typecheck
 
 spelling:
   stage: tests
-  image: $NODE_IMAGE
+  extends: .node-template
   script:
     - pnpm install
     - pnpm spelling
 
 e2e:
   stage: tests
-  image: $NODE_IMAGE
+  extends: .node-template
   script:
     - pnpm install --frozen-lockfile
     - pnpm playwright:install

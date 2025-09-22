@@ -1,6 +1,6 @@
 build:
   stage: deploy
-  image: $NODE_IMAGE
+  extends: .node-template
   script:
     - pnpm install
     - pnpm build --preset github_pages
@@ -10,7 +10,7 @@ build:
 
 deploy:
   stage: deploy
-  image: $NODE_IMAGE
+  extends: .node-template
   dependencies:
     - build
   script:
