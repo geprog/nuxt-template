@@ -1,5 +1,4 @@
 build:
-  stage: build
   extends: .node-template
   script:
     - pnpm install

@@ -1,7 +1,6 @@
 deploy:
-  stage: deploy
   extends: .node-template
-  dependencies:
+  needs:
     - build
   script:
     # Adjust the deployment strategy here; e.g., for GitLab Pages:

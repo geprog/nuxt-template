@@ -1,26 +1,22 @@
 lint:
-  stage: tests
   extends: .node-template
   script:
     - pnpm install
     - pnpm lint
 
 typecheck:
-  stage: tests
   extends: .node-template
   script:
     - pnpm install
     - pnpm typecheck
 
 spelling:
-  stage: tests
   extends: .node-template
   script:
     - pnpm install
     - pnpm spelling
 
 e2e:
-  stage: tests
   extends: .node-template
   script:
     - pnpm install --frozen-lockfile
