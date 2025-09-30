@@ -1,23 +1,31 @@
 lint:
-  extends: .node-template
+  extends:
+    - .node-template
+    - .rules
   script:
     - pnpm install
     - pnpm lint
 
 typecheck:
-  extends: .node-template
+  extends:
+    - .node-template
+    - .rules
   script:
     - pnpm install
     - pnpm typecheck
 
 spelling:
-  extends: .node-template
+  extends:
+    - .node-template
+    - .rules
   script:
     - pnpm install
     - pnpm spelling
 
 e2e:
-  extends: .node-template
+  extends:
+    - .node-template
+    - .rules
   script:
     - pnpm install --frozen-lockfile
     - pnpm playwright:install
@@ -27,3 +35,9 @@ e2e:
     paths:
       - playwright-report/
     expire_in: 30 days
+
+.rules:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
