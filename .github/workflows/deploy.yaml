@@ -21,7 +21,7 @@ jobs:
           run_install: true
       - run: pnpm build --preset github_pages
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./.output/public
 
