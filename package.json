@@ -33,7 +33,7 @@
     "cspell": "9.2.1",
     "eslint": "9.36.0",
     "eslint-plugin-format": "1.0.2",
-    "happy-dom": "18.0.1",
+    "happy-dom": "20.0.0",
     "vitest": "3.2.4",
     "vue-tsc": "3.0.7"
   }
