@@ -19,7 +19,7 @@
     "playwright:install": "playwright install && playwright install-deps"
   },
   "dependencies": {
-    "@nuxt/ui": "3.3.4",
+    "@nuxt/ui": "3.3.7",
     "@nuxtjs/i18n": "10.1.0",
     "nuxt": "4.1.2",
     "tailwindcss": "4.1.13"
