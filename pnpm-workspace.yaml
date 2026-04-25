@@ -1,10 +1,7 @@
 minimumReleaseAge: 1440
-
-shellEmulator: true
-
-strictPeerDependencies: true
-
 trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 43830
+strictPeerDependencies: true
 
 ignoredBuiltDependencies:
   - core-js
