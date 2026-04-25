@@ -8,6 +8,7 @@
     ".cspell.json",
     ".nuxt",
     "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
     "playwright-report"
   ],
   "words": [
