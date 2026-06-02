@@ -12,3 +12,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
   - vue-demi
+minimumReleaseAgeExclude:
+  # Renovate security update: vitest@4.1.0
+  - vitest@4.1.0
