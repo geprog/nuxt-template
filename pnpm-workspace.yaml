@@ -12,3 +12,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
   - vue-demi
+minimumReleaseAgeExclude:
+  # Renovate security update: @nuxt/ui@4.8.1
+  - "@nuxt/ui@4.8.1"
