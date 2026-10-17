@@ -39,7 +39,7 @@ build-server:
 
 .docker-review-template:
   variables:
-    IMAGE: ${IMAGE_NAME}-dev:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}
+    IMAGE: ${IMAGE_NAME}-dev:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
 
 build-docker-review:
   extends:

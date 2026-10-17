@@ -28,26 +28,19 @@ jobs:
           run_install: true
       - run: pnpm build
 
-      - name: Registry names and ref slug
+      - name: Registry image name
         id: meta
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          HEAD_REF: ${{ github.head_ref }}
-          REF_NAME: ${{ github.ref_name }}
-          SHA: ${{ github.sha }}
+          # on pull requests github.ref / github.sha point to the merge commit, use the head branch / commit instead
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           NAME="${{ env.IMAGE_NAME }}"
           echo "image_dev=ghcr.io/${OWNER}/${NAME}-dev" >> "$GITHUB_OUTPUT"
-
-          if [ "$EVENT_NAME" = "pull_request" ]; then
-            REF="$HEAD_REF"
-          else
-            REF="$REF_NAME"
-          fi
-          SLUG=$(echo "$REF" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9.]+/-/g' | sed -E 's/^-+|-+$//g')
-          echo "ref_slug=${SLUG}" >> "$GITHUB_OUTPUT"
-          echo "tag=${SLUG}-${SHA}" >> "$GITHUB_OUTPUT"
+          # branch names may contain characters that are not allowed in image tags (e.g. "/")
+          SLUG=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g')
+          echo "tag=${SLUG}-${SHA::8}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
