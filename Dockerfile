@@ -1,4 +1,4 @@
-FROM docker.io/node:24-slim
+FROM docker.io/node:26-slim
 
 WORKDIR /app
 EXPOSE 3000
@@ -13,4 +13,5 @@ CMD ["node", \
     "--permission", \
     "--allow-fs-read=/app", \
     "--allow-addons", \
+    "--allow-net", \
     "./server/index.mjs"]

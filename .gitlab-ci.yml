@@ -1,7 +1,14 @@
 .node-template:
-  image: node:24
+  image: node:26
+  variables:
+    # the pnpm install script needs a supported shell to set up pnpm
+    SHELL: /bin/bash
   before_script:
-    - corepack enable
+    # install the pnpm version pinned in the packageManager field of package.json
+    - export PNPM_HOME="$HOME/.local/share/pnpm"
+    - export PNPM_VERSION=$(node -p "require('./package.json').packageManager.split('@')[1]")
+    - curl -fsSL https://get.pnpm.io/install.sh | sh -
+    - export PATH="$PNPM_HOME/bin:$PATH"
 
 include:
   - local: .gitlab/workflows/tests.yml
