@@ -1,0 +1,64 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: nuxt-template
+
+jobs:
+  docker-review:
+    name: Docker image (review / main)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+      - run: pnpm build
+
+      - name: Registry image name
+        id: meta
+        env:
+          # on pull requests github.ref / github.sha point to the merge commit, use the head branch / commit instead
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          NAME="${{ env.IMAGE_NAME }}"
+          echo "image_dev=ghcr.io/${OWNER}/${NAME}-dev" >> "$GITHUB_OUTPUT"
+          # branch names may contain characters that are not allowed in image tags (e.g. "/")
+          SLUG=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g')
+          echo "tag=${SLUG}-${SHA::8}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image (dev)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+          tags: ${{ steps.meta.outputs.image_dev }}:${{ steps.meta.outputs.tag }}
+          cache-from: type=gha,scope=review
+          cache-to: type=gha,mode=max,scope=review

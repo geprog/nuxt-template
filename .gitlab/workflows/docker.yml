@@ -1,0 +1,61 @@
+build-server:
+  extends: .node-template
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
+  script:
+    - pnpm install
+    - pnpm build
+  artifacts:
+    paths:
+      - ./.output
+
+.build-docker-template:
+  image:
+    name: moby/buildkit:rootless
+    entrypoint: ['']
+  needs: [build-server]
+  variables:
+    DOCKER_AUTH_CONFIG: ''
+    BUILDKITD_FLAGS: --oci-worker-no-process-sandbox
+    IMAGE_NAME: nuxt-template
+    # default to the GitLab container registry of this project, override via CI/CD variables
+    REGISTRY: $CI_REGISTRY
+    REGISTRY_NAMESPACE: $CI_PROJECT_PATH
+    REGISTRY_USER: $CI_REGISTRY_USER
+    REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
+  before_script:
+    - mkdir -p ~/.docker
+    - echo "{\"auths\":{\"$REGISTRY\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PASSWORD\"}}}" > ~/.docker/config.json
+  script:
+    - |
+      buildctl-daemonless.sh build \
+        --frontend dockerfile.v0 \
+        --local context=. \
+        --local dockerfile=. \
+        --opt platform=linux/amd64 \
+        --output type=image,name=$REGISTRY/$REGISTRY_NAMESPACE/$IMAGE,push=true
+
+.docker-review-template:
+  variables:
+    IMAGE: ${IMAGE_NAME}-dev:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
+
+build-docker-review:
+  extends:
+    - .build-docker-template
+    - .docker-review-template
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+.docker-release-template:
+  variables:
+    IMAGE: ${IMAGE_NAME}:${CI_COMMIT_TAG}
+
+build-docker-release:
+  extends:
+    - .build-docker-template
+    - .docker-release-template
+  rules:
+    - if: $CI_COMMIT_TAG

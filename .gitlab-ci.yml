@@ -5,4 +5,5 @@
 
 include:
   - local: .gitlab/workflows/tests.yml
+  - local: .gitlab/workflows/docker.yml
   - local: .gitlab/workflows/deploy.yml
