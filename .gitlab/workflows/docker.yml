@@ -20,6 +20,11 @@ build-server:
     DOCKER_AUTH_CONFIG: ''
     BUILDKITD_FLAGS: --oci-worker-no-process-sandbox
     IMAGE_NAME: nuxt-template
+    # default to the GitLab container registry of this project, override via CI/CD variables
+    REGISTRY: $CI_REGISTRY
+    REGISTRY_NAMESPACE: $CI_PROJECT_PATH
+    REGISTRY_USER: $CI_REGISTRY_USER
+    REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
   before_script:
     - mkdir -p ~/.docker
     - echo "{\"auths\":{\"$REGISTRY\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PASSWORD\"}}}" > ~/.docker/config.json
