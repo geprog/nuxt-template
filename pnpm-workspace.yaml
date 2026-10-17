@@ -1,14 +1,13 @@
 minimumReleaseAge: 1440
-shellEmulator: true
+minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43830
 strictPeerDependencies: true
+shellEmulator: true
 
-ignoredBuiltDependencies:
-  - core-js
-  - unrs-resolver
-
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - vue-demi
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: false
+  esbuild: true
+  unrs-resolver: false
+  vue-demi: true
