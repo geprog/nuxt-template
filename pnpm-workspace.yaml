@@ -11,3 +11,6 @@ allowBuilds:
   esbuild: true
   unrs-resolver: false
   vue-demi: true
+minimumReleaseAgeExclude:
+  # Renovate security update: nuxt@4.6.2
+  - nuxt@4.6.2
