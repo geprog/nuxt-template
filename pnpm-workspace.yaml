@@ -4,6 +4,7 @@ trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43830
 strictPeerDependencies: true
 shellEmulator: true
+engineStrict: true
 
 allowBuilds:
   '@parcel/watcher': true

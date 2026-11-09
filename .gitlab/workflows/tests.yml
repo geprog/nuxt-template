@@ -28,6 +28,14 @@ spelling:
     - pnpm install
     - pnpm spelling
 
+unit:
+  extends:
+    - .node-template
+    - .rules
+  script:
+    - pnpm install
+    - pnpm test
+
 e2e:
   extends:
     - .node-template
