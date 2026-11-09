@@ -7,7 +7,12 @@ export default defineConfig<ConfigOptions>({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [['html', { outputFolder: 'playwright-report' }]],
+  reporter: [
+    [
+      'html',
+      { outputFolder: 'playwright-report' },
+    ],
+  ],
   testMatch: '**/*.test.ts',
   use: {
     video: process.env.CI ? 'retain-on-failure' : 'on',
