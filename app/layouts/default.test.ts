@@ -1,6 +1,6 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 import { describe, expect, it } from 'vitest';
-import DefaultLayout from '~/layouts/default.vue';
+import DefaultLayout from './default.vue';
 
 describe('default layout', () => {
   it('renders the navigation links', async () => {
