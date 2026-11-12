@@ -8,6 +8,7 @@ It enriches it with
 - spellchecking
 - eslint config
 - typechecking
+- Lighthouse checks in CI (every category has to score 100, see `lighthouserc.json`)
 
 It uses `pnpm` as package manager.
 `SSR` is deactivated.

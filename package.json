@@ -17,6 +17,7 @@
     "postinstall": "nuxt prepare",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:lighthouse": "lhci autorun",
     "playwright:install": "playwright install && playwright install-deps"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "10.0.0",
     "@cspell/dict-de-de": "4.1.3",
+    "@lhci/cli": "0.16.0",
     "@nuxt/test-utils": "4.4.0",
     "@playwright/test": "1.65.0",
     "@vue/test-utils": "2.5.1",

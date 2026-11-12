@@ -29,3 +29,7 @@ logs
 playwright-report/
 test-results/
 
+
+# lighthouse report
+.lighthouseci/
+lighthouse-report/

@@ -9,11 +9,16 @@
     ".nuxt",
     "pnpm-lock.yaml",
     "pnpm-workspace.yaml",
-    "playwright-report"
+    "playwright-report",
+    ".lighthouseci",
+    "lighthouse-report"
   ],
   "words": [
+    "autorun",
     "dprint",
     "geprog",
+    "lhci",
+    "lighthouserc",
     "nuxt",
     "nuxtjs"
   ],
