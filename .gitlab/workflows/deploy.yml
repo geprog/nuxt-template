@@ -1,5 +1,7 @@
-build:
+build-gitlab-page:
   extends: .node-template
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - pnpm install
     - pnpm build --preset gitlab_pages
@@ -10,7 +12,7 @@ build:
 deploy:
   extends: .node-template
   needs:
-    - build
+    - build-gitlab-page
   script:
     # Adjust the deployment strategy here; e.g., for GitLab Pages:
     - mv ./.output/public public
