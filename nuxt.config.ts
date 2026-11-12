@@ -12,7 +12,17 @@ export default defineNuxtConfig({
       titleTemplate: '%s',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { name: 'description', content: 'Nuxt starter template with Nuxt UI, i18n, linting, spellchecking and typechecking.' },
+      ],
     },
+  },
+  nitro: {
+    // serve pre-compressed (gzip / brotli) static assets
+    compressPublicAssets: true,
   },
   typescript: {
     strict: true,

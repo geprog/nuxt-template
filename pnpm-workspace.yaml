@@ -6,6 +6,10 @@ strictPeerDependencies: true
 shellEmulator: true
 engineStrict: true
 
+overrides:
+  # @lhci/cli@0.16.0 depends on proxy-agent@^6, but its puppeteer dependency requires >=8.0.1 (fixed in @lhci/cli@0.16.1)
+  proxy-agent: 8.0.2
+
 allowBuilds:
   '@parcel/watcher': true
   core-js: false

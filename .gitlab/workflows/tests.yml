@@ -49,3 +49,20 @@ e2e:
     paths:
       - playwright-report/
     expire_in: 30 days
+
+lighthouse:
+  extends:
+    - .node-template
+    - .rules
+  variables:
+    CHROME_PATH: /usr/bin/chromium
+  script:
+    - apt-get update && apt-get install -y --no-install-recommends chromium
+    - pnpm install
+    - pnpm build
+    - pnpm test:lighthouse
+  artifacts:
+    when: always
+    paths:
+      - lighthouse-report/
+    expire_in: 30 days
