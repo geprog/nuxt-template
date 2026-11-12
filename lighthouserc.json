@@ -8,7 +8,7 @@
       ],
       "numberOfRuns": 3,
       "settings": {
-        "chromeFlags": "--no-sandbox --headless=new",
+        "chromeFlags": "--no-sandbox --headless=new --force-prefers-reduced-motion",
         "preset": "desktop"
       }
     },
