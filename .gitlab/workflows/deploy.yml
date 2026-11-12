@@ -10,13 +10,14 @@ build-gitlab-page:
       - ./.output/public
 
 deploy:
-  extends: .node-template
+  # only publishes the artifact of build-gitlab-page, so the pnpm setup of .node-template is not needed
+  image: !reference [.node-template, image]
   needs:
     - build-gitlab-page
   script:
-    # Adjust the deployment strategy here; e.g., for GitLab Pages:
-    - mv ./.output/public public
+    # publish the build output directly; moving it to ./public would nest it into the repository's public/ directory
+    - echo "Deploying .output/public to GitLab Pages"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   pages:
-    publish: public
+    publish: .output/public
