@@ -1,10 +1,10 @@
 .node-template:
-  image: node:26.13.1@sha256:e18c3ccdf7d71619990b0e85639f506e2028a95410999cab24cc373cbd10e0ac
+  image: node:26.13.1@sha256:f8e5d4bb28fa55c74f1345166a082a10b7c68f22304350c1ce0d18358ae94996
   variables:
     # the pnpm install script needs a supported shell to set up pnpm
     SHELL: /bin/bash
     # official pnpm install script (https://get.pnpm.io/install.sh), pinned to a commit of pnpm/get.pnpm.io
-    PNPM_INSTALL_SCRIPT: https://raw.githubusercontent.com/pnpm/get.pnpm.io/7c26e549143daf5cf072a38c428170ad8eccaf2d/install.sh
+    PNPM_INSTALL_SCRIPT: https://raw.githubusercontent.com/pnpm/get.pnpm.io/febc5a15277bb53a4d92430e4bbebeccad4828fe/install.sh
   before_script:
     # install the pnpm version pinned in the packageManager field of package.json
     - export PNPM_HOME="$HOME/.local/share/pnpm"
